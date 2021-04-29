@@ -1,0 +1,26 @@
+<h1>{{title}}</h1>
+<table>
+  <tr>
+    <td>Name</td>
+    <td><input type="text" name="name" [(ngModel)]="product.name"></td>
+  </tr>
+  <tr>
+    <td>Price:</td>
+    <td><input name="price" type="number" [(ngModel)]="product.price"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><input type="submit" value="Create" (click)="createProduct()"></td>
+  </tr>
+</table>
+<h1>List Product</h1>
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Price</td>
+  </tr>
+  <tr *ngFor="let p of products">
+    <td>{{p.name}}</td>
+    <td>{{p.price}}</td>
+  </tr>
+</table>
