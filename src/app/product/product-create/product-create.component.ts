@@ -13,11 +13,17 @@ export class ProductCreateComponent implements OnInit {
     price: 15000
   };
   products: Product[] = [];
+  isShowed = false;
+  index = 0;
 
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  changeStatus() {
+    this.isShowed = !this.isShowed;
   }
 
   // createProduct(name, price) {
@@ -31,5 +37,13 @@ export class ProductCreateComponent implements OnInit {
   createProduct() {
     this.products.push(this.product);
     this.product = {};
+  }
+
+  removeProduct(i: number) {
+    this.products.splice(i, 1);
+  }
+
+  increaseIndex() {
+    this.index++;
   }
 }

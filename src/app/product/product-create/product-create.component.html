@@ -1,26 +1,54 @@
-<h1>{{title}}</h1>
+<button (click)="increaseIndex()" [style.color]="index %2 == 0 ? 'red' : 'blue'">Show form</button>
+<ng-container [ngSwitch]="index%2==0">
+  <div *ngSwitchCase="true">
+    <h1 >{{title}}</h1>
+    <table>
+      <tr>
+        <td>Name</td>
+        <td><input [(ngModel)]="product.name" name="name" type="text"></td>
+      </tr>
+      <tr>
+        <td>Price:</td>
+        <td><input [(ngModel)]="product.price" name="price" type="number"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input (click)="createProduct()" type="submit" value="Create"></td>
+      </tr>
+    </table>
+  </div>
+  <div *ngSwitchCase="false">
+    <h1>Update Form</h1>
+    <table>
+      <tr>
+        <td>Name</td>
+        <td><input [(ngModel)]="product.name" name="name" type="text"></td>
+      </tr>
+      <tr>
+        <td>Price:</td>
+        <td><input [(ngModel)]="product.price" name="price" type="number"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input (click)="createProduct()" type="submit" value="Create"></td>
+      </tr>
+    </table>
+  </div>
+</ng-container>
+<h1 class="header" [class.row]="index == 0">List Product</h1>
 <table>
   <tr>
-    <td>Name</td>
-    <td><input type="text" name="name" [(ngModel)]="product.name"></td>
-  </tr>
-  <tr>
-    <td>Price:</td>
-    <td><input name="price" type="number" [(ngModel)]="product.price"></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td><input type="submit" value="Create" (click)="createProduct()"></td>
-  </tr>
-</table>
-<h1>List Product</h1>
-<table>
-  <tr>
+    <td>#</td>
     <td>Name</td>
     <td>Price</td>
+    <td>Delete</td>
   </tr>
-  <tr *ngFor="let p of products">
+  <tr *ngFor="let p of products; index as i">
+    <td>{{i + 1}}</td>
     <td>{{p.name}}</td>
     <td>{{p.price}}</td>
+    <td>
+      <button (click)="removeProduct(i)">Delete</button>
+    </td>
   </tr>
 </table>
